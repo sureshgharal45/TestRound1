@@ -4,6 +4,7 @@ const connectDB = require("./config/db");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const errorMiddleware = require("./middlewares/error");
+const path = require("path");
 
 //handling uncaught exception
 process.on("uncaughtException", (err) => {
@@ -13,7 +14,7 @@ process.on("uncaughtException", (err) => {
 });
 
 //dotenv config
-dotenv.config();
+dotenv.config({path: "backend/config/config.env"});
 
 //mongo db connection
 connectDB();
@@ -27,6 +28,7 @@ app.use("/api/v1", require("./routes/userRoutes"));
 
 // --------------------------deployment------------------------------
 const __dirname1 = path.resolve();
+console.log(__dirname1);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname1, "/frontend/build")));
   app.get("*", (req, res) => {
