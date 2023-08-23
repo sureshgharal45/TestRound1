@@ -20,8 +20,10 @@ const ScreenRecorder = () => {
   );
   const dispatch = useDispatch();
   const alert = useAlert();
+  //start recording
   const startRecording = async () => {
     try {
+      //to record screen stream
       const stream = await navigator.mediaDevices.getDisplayMedia({
         video: true,
       });
@@ -47,6 +49,7 @@ const ScreenRecorder = () => {
     }
   };
 
+  //stop recording
   const stopRecording = () => {
     if (screenRecorder) {
       screenRecorder.stopRecording(() => {
@@ -76,6 +79,7 @@ const ScreenRecorder = () => {
     }
   };
 
+  //saving recording to localstorage
   const saveBlobToLocalStorage = (key, blob) => {
     const reader = new FileReader();
     reader.onload = () => {
@@ -86,6 +90,7 @@ const ScreenRecorder = () => {
     reader.readAsDataURL(blob);
   };
 
+  //getting blobs from localstorage
   const getBlobFromLocalStorage = (key) => {
     const base64Data = localStorage.getItem(key);
     return base64Data ? base64Data : null;

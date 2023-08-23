@@ -3,13 +3,12 @@ import "./Home.css";
 import { useDispatch } from "react-redux";
 import { register } from "../actions/userAction";
 import ScreenRecorder from "../components/ScreenRecorder";
-import { useAlert } from "react-alert";
 
 const Home = () => {
   const [user, setUser] = useState({ name: "", email: "" });
   const dispatch = useDispatch();
-  const alert = useAlert();
   const { name, email } = user;
+  //register user
   const registerSubmit = (e) => {
     e.preventDefault();
 
